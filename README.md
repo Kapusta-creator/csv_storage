@@ -7,9 +7,9 @@ API for csv_storage
 API
 
 <h3>Регистрация пользователя</h3>
-endpoint: /api/users
-method: POST
-Создает нового пользователя и заносит информацию о нем в БД.
+endpoint: /api/users<br>
+method: POST<br>
+Создает нового пользователя и заносит информацию о нем в БД.<br>
 Пример использования:<br>
 ```requests.post('http://127.0.0.1:5000/api/users', json={'username': "Kapusta-creator", 'password': 'superpassword'})```<br>
 Пример ответа сервера:<br>
