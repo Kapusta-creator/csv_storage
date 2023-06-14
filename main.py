@@ -155,7 +155,10 @@ def delete_file(filename):
     if request.method == "DELETE":
         session = db_session.create_session()
         user = g.user
-        file = session.query(File).filter(File.name == filename, File.user == user).first()
+        if request.json['from_private']:
+            file = session.query(File).filter(File.name == filename, File.user == user, File.is_private).first()
+        else:
+            file = session.query(File).filter(File.name == filename, File.user == user, File.is_private == 0).first()
         if file:
             path = file.path
             if os.path.exists(path):
@@ -163,12 +166,12 @@ def delete_file(filename):
             session.delete(file)
             session.commit()
         else:
-            abort(404)
+            return jsonify({"reason": "There is no such file"}), 404
         return jsonify({"deleted": filename}), 200
-    abort(400)
+    return jsonify({"reason": "Method is not allowed"}), 404
 
 
-@app.route('/api/file_list/', methods=['GET'])
+@app.route('/api/file_list', methods=['GET'])
 @auth.login_required
 def file_list():
     if request.method == 'GET':
@@ -182,7 +185,9 @@ def file_list():
                                          'name': file.name,
                                          'created_date': datetime.datetime.strftime(file.created_date,
                                                                                     "%Y-%m-%dT%H:%M:%SZ"),
-                                         'keys': keys})
+                                         'keys': keys,
+                                         'is_private': file.is_private,
+                                         'user': file.user.name})
         return jsonify(server_files), 200
     return jsonify({"status": "Bad Request"}), 400
 
