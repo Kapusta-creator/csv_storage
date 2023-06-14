@@ -10,10 +10,10 @@ API
 endpoint: /api/users
 method: POST
 Создает нового пользователя и заносит информацию о нем в БД.
-Пример использования:
-`requests.post('http://127.0.0.1:5000/api/users', json={'username': "Kapusta-creator", 'password': 'superpassword'})`
-Пример ответа сервера:
-`{"username":"Kapusta-creator"}`
+Пример использования:<br>
+```requests.post('http://127.0.0.1:5000/api/users', json={'username': "Kapusta-creator", 'password': 'superpassword'})```<br>
+Пример ответа сервера:<br>
+```{"username":"Kapusta-creator"}```
 
 <h3>Получение токена для авторизации</h3>
 endpoint: /api/token
