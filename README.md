@@ -11,11 +11,11 @@ endpoint: /api/users
 method: POST
 Создает нового пользователя и заносит информацию о нем в БД.
 Пример использования:
-```
+```python
 requests.post('http://127.0.0.1:5000/api/users', json={'username': "Kapusta-creator", 'password': 'superpassword'})
 ```
 Пример ответа сервера:
-```
+```python
 {"username":"Kapusta-creator"}
 ```
 
@@ -24,11 +24,11 @@ endpoint: /api/token
 method: GET
 Возвращает уникальный токен для авторизации, используемый при запросах к сервису.
 Пример использования:
-```
+```python
 requests.get("http://127.0.0.1:5000/api/token", auth=("Kapusta-creator", 'superpassword'))
 ```
 Пример ответа сервера:
-```
+```python
 {'token': 'eyJpZCI6MX0.ZImXhQ.4iFs4NEC9DS71DiY_PWwE_NQgW0'}
 ```
 <h3>Загрузка нового файла</h3>
@@ -36,7 +36,7 @@ endpoint: /api/upload_file
 method: POST
 Загружает csv-файл на сервер, в приватную или общую папку.
 Пример использования:
-```
+```python
 file = 'data_res.csv'
 files = {
     'json': ('data', json.dumps({'is_private': True, 'delimiter': ","}), 'application/json'),
@@ -48,7 +48,7 @@ requests.post("http://127.0.0.1:5000/api/upload_file", auth=(token, ''), files=f
 Также необходимо указать приватный файл или публичный и разделитель данного csv-файла,
 эта информация записывается в один словарь с файлом по ключу json с Content-type равным 'application/json'.
 Пример ответа сервера:
-```
+```python
 {'filename': 'data_res.csv', 'username': 'Kapusta-creator'}
 ```
 
@@ -57,11 +57,11 @@ endpoint: /api/delete_file/<filename>
 method: DELETE
 Удаляет файл, загруженный пользователем из приватного или публичного пространства
 Пример использования:
-```
+```python
 requests.delete("http://127.0.0.1:5000/api/delete_file/data_res.csv", auth=(token, ''), json={"from_private": False})
 ```
 Пример ответа сервера:
-```
+```python
 {'deleted': 'data_res.csv'}
 ```  
 <h3>Получение списка файлов</h3>
@@ -69,11 +69,11 @@ endpoint: /api/file_list
 method: GET
 Получает список файлов, загруженных данным пользователем или находящихся в публичном пространстве.
 Пример использования:
-```
+```python
 requests.get("http://127.0.0.1:5000/api/file_list", auth=(token, '')
 ```
 Пример полученных данных:
-```
+```python
   {'data': [{'created_date': '2023-06-14T12:49:15Z',
            'delimiter': ',',
            'is_private': False,
@@ -118,7 +118,7 @@ endpoint: /api/view_file/<filename>
 method: GET
 Получает содержимое файла с возможностью сортировки и фильтрации этого содержимого.
 Пример использования:
-```
+```python
 data = json.dumps({'from_private': True, 'sorting_params': {"values": ["match_id", 'team_id'],
                                                              'ascending': [False, True]},
                     'filter_query': 'x > 10 and shootedBy == "LeftFoot"'})
@@ -129,7 +129,7 @@ pprint(response)
 Для сортировки необходимо установить sorting_params - {"values": [key1, key2, ...], "ascending": [True/False, True/False, ...]}
 Для фильтрации необходимо указать строку filter_query - "{Стандартный Pandas query для фильтрации}"
 Пример получаемых данных:
-```
+```python
 {'data': '{
   "columns": ["match_id","team_id","team_name",...,"shots_by_team_before","isGoal","ft_score"],
   "index":[5619,5620,5621,5625,5638,5647,5635,5636,5642,5646,5649,...,19408,19420,19401,19418,19419],
