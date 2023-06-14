@@ -68,38 +68,38 @@ requests.get("http://127.0.0.1:5000/api/file_list", auth=(token, '')<br>
   {'data': [{'created_date': '2023-06-14T12:49:15Z',<br>
            'delimiter': ",",<br>
            'is_private': False,<br>
-           'keys': ['match_id',<br>
-                    'team_id',<br>
-                    'team_name',<br>
-                    'playerId',<br>
-                    'x',<br>
-                    'y',<br>
-                    'shootedBy',<br>
-                    'distance',<br>
-                    'angle',<br>
-                    'passes_before',<br>
-                    'shots_before',<br>
-                    'shots_by_team_before',<br>
-                    'isGoal',<br>
+           'keys': ['match_id',
+                    'team_id',
+                    'team_name',
+                    'playerId',
+                    'x',
+                    'y',
+                    'shootedBy',
+                    'distance',
+                    'angle',
+                    'passes_before',
+                    'shots_before',
+                    'shots_by_team_before',
+                    'isGoal',
                     'ft_score'],<br>
            'name': 'data_res.csv',<br>
            'user': 'Kapusta-creator'},<br>
           {'created_date': '2023-06-14T12:49:25Z',<br>
            'delimiter': ',',<br>
            'is_private': True,<br>
-           'keys': ['match_id',<br>
-                    'team_id',<br>
-                    'team_name',<br>
-                    'playerId',<br>
-                    'x',<br>
-                    'y',<br>
-                    'shootedBy',<br>
-                    'distance',<br>
-                    'angle',<br>
-                    'passes_before',<br>
-                    'shots_before',<br>
-                    'shots_by_team_before',<br>
-                    'isGoal',<br>
+           'keys': ['match_id',
+                    'team_id',
+                    'team_name',
+                    'playerId',
+                    'x',
+                    'y',
+                    'shootedBy',
+                    'distance',
+                    'angle',
+                    'passes_before',
+                    'shots_before',
+                    'shots_by_team_before',
+                    'isGoal',
                     'ft_score'],<br>
            'name': 'data_res.csv',<br>
            'user': 'Kapusta-creator'}]}<br>
@@ -110,7 +110,7 @@ method: GET<br>
 Получает содержимое файла с возможностью сортировки и фильтрации этого содержимого.<br>
 Пример использования:<br>
 
-data = json.dumps({'from_private': True,<br> 'sorting_params': {"values": ["match_id", 'team_id'],<br>
+data = json.dumps({'from_private': True,<br> 'sorting_params': {"values": ["match_id", 'team_id'], 
                                                              'ascending': [False, True]},<br>
                     'filter_query': 'x > 10 and shootedBy == "LeftFoot"'})<br>
 response = json.loads(requests.get("http://127.0.0.1:5000/api/view_file/data_res.csv", auth=(token, ''), json=data).text)<br>
