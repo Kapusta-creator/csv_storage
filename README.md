@@ -11,26 +11,18 @@ endpoint: /api/users
 method: POST
 Создает нового пользователя и заносит информацию о нем в БД.
 Пример использования:
-`
-requests.post('http://127.0.0.1:5000/api/users', json={'username': "Kapusta-creator", 'password': 'superpassword'})
-`
+`requests.post('http://127.0.0.1:5000/api/users', json={'username': "Kapusta-creator", 'password': 'superpassword'})`
 Пример ответа сервера:
-`
-{"username":"Kapusta-creator"}
-`
+`{"username":"Kapusta-creator"}`
 
 <h3>Получение токена для авторизации</h3>
 endpoint: /api/token
 method: GET
 Возвращает уникальный токен для авторизации, используемый при запросах к сервису.
 Пример использования:
-`
-requests.get("http://127.0.0.1:5000/api/token", auth=("Kapusta-creator", 'superpassword'))
-`
+`requests.get("http://127.0.0.1:5000/api/token", auth=("Kapusta-creator", 'superpassword'))`
 Пример ответа сервера:
-`
-{'token': 'eyJpZCI6MX0.ZImXhQ.4iFs4NEC9DS71DiY_PWwE_NQgW0'}
-`
+`{'token': 'eyJpZCI6MX0.ZImXhQ.4iFs4NEC9DS71DiY_PWwE_NQgW0'}`
 <h3>Загрузка нового файла</h3>
 endpoint: /api/upload_file
 method: POST
